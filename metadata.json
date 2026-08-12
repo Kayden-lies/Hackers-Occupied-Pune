@@ -1,0 +1,6 @@
+{
+  "name": "Hackers Occupied Pune - 3D Mascot Hero",
+  "description": "3D mascot hero featuring scroll-driven rotation and dynamic cinematic lighting transition.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

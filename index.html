@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hackers Occupied Pune</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+  <script type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+  </script>
+
+  <style>
+    :root {
+      --hero-to-timeline-gap: 30vh;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #020923;
+      overflow-x: clip;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 180vh;
+      width: 100%;
+      z-index: 2;
+      overflow: visible;
+    }
+
+    .hero-stage {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      align-self: flex-start;
+    }
+
+    .hero-to-timeline-gap {
+      position: relative;
+      height: var(--hero-to-timeline-gap);
+      background: transparent;
+      z-index: 2;
+    }
+
+    /* ================================
+       SCROLL INDICATOR CAPSULE
+       ================================ */
+
+    .scroll-capsule {
+      position: absolute;
+      right: 3vw;
+      bottom: 4vh;
+      z-index: 20;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+
+      background: rgba(2, 9, 35, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 224, 0.18);
+      box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 254, 0.1);
+
+      pointer-events: none;
+      user-select: none;
+      box-sizing: border-box;
+      will-change: opacity, transform;
+    }
+
+    .capsule-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .capsule-state {
+      display: flex;
+      align-items: center;
+      gap: 0.55em;
+
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      color: #FFFFE0;
+      white-space: nowrap;
+      line-height: 1;
+
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+      will-change: opacity;
+    }
+
+    .capsule-state.state-timeline {
+      position: absolute;
+      inset: 0;
+      justify-content: center;
+    }
+
+    #timeline {
+      position: relative;
+      min-height: 100vh;
+      background: transparent;
+      z-index: 2;
+    }
+
+    .website-bg {
+      position: fixed;
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+
+      object-fit: cover;
+
+      opacity: 0.40;
+      z-index: 0;
+
+      pointer-events: none;
+
+      will-change: opacity;
+
+      transition: opacity 0.1s linear;
+    }
+
+    .global-frosted-glass {
+      position: fixed;
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+
+      background: rgba(2, 9, 35, 0.18);
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    model-viewer {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: transparent;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      pointer-events: none;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    /* ================================
+       MAIN TITLE
+       ================================ */
+
+    .hero-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      gap: 2.5em;
+
+      text-align: center;
+      white-space: nowrap;
+
+      width: 100%;
+      max-width: none;
+
+      transform: translateY(-30vh);
+    }
+
+    .word {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      line-height: 0.85;
+      white-space: nowrap;
+    }
+
+    .char-card {
+      display: inline-block;
+      position: relative;
+
+      transform-style: preserve-3d;
+      perspective: 800px;
+
+      font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+      font-size: clamp(3.8rem, 9.1vw, 12.5rem);
+      font-weight: 1300;
+      letter-spacing: 0.12em;
+
+      color: #FFFFE0;
+      text-transform: uppercase;
+
+      -webkit-text-stroke: 1.5px rgba(2, 9, 35, 0.85);
+
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 12px rgba(0, 0, 0, 0.8),
+        0 10px 30px rgba(0, 0, 0, 0.95);
+
+      will-change: transform;
+    }
+
+    .char-face {
+      display: inline-block;
+
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Taller main title */
+    .char-face.front {
+      transform: scaleY(1.3) rotateY(0deg);
+    }
+
+    .char-face.back {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transform: scaleY(1.3) rotateY(180deg);
+    }
+
+    /* ================================
+       EVENT DATE
+       ================================ */
+
+    .event-date-container {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(10vh);
+      /* Reduced horizontal distance from mascot */
+      padding: 0 clamp(2rem, 5vw, 7rem);
+
+      box-sizing: border-box;
+      pointer-events: none;
+
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .event-date {
+      font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+
+      /* 1.5× larger than the previous 6.3rem maximum */
+      font-size: clamp(3.375rem, 9vw, 9.45rem);
+
+      font-weight: 1000;
+      letter-spacing: 0.1em;
+
+      color: #FFFFE0;
+      text-transform: uppercase;
+
+      -webkit-text-stroke: 1.5px rgba(2, 9, 35, 0.85);
+
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 12px rgba(0, 0, 0, 0.8),
+        0 10px 30px rgba(0, 0, 0, 0.95);
+
+      opacity: 0;
+      transform: translateY(50px);
+
+      will-change: transform, opacity;
+    }
+  </style>
+</head>
+
+<body>
+  <img
+    id="websiteBg"
+    class="website-bg"
+    src="Website_Bg.png"
+    alt=""
+  >
+  <div class="global-frosted-glass"></div>
+
+  <section id="hero" class="hero-section">
+    <div class="hero-stage">
+
+      <model-viewer
+        id="mascot"
+        src="mascot.glb"
+        alt="Hackers Occupied Pune Mascot"
+        shadow-intensity="0"
+        exposure="0.08">
+      </model-viewer>
+
+      <div class="hero-overlay">
+
+        <!-- ================================
+             MAIN TITLE
+             ================================ -->
+
+        <div class="hero-title">
+
+          <div class="word" data-word="WELCOME">
+
+            <span class="char-card">
+              <span class="char-face front">U</span>
+              <span class="char-face back">H</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">N</span>
+              <span class="char-face back">A</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">L</span>
+              <span class="char-face back">C</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">E</span>
+              <span class="char-face back">K</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">A</span>
+              <span class="char-face back">E</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">S</span>
+              <span class="char-face back">R</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">H</span>
+              <span class="char-face back">S</span>
+            </span>
+
+          </div>
+
+
+          <div class="word" data-word="UPCOMING">
+
+            <span class="char-card">
+              <span class="char-face front">U</span>
+              <span class="char-face back">O</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">P</span>
+              <span class="char-face back">C</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">C</span>
+              <span class="char-face back">C</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">O</span>
+              <span class="char-face back">U</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">M</span>
+              <span class="char-face back">P</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">I</span>
+              <span class="char-face back">I</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">N</span>
+              <span class="char-face back">E</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">G</span>
+              <span class="char-face back">D</span>
+            </span>
+
+          </div>
+
+
+          <div class="word" data-word="DAWN">
+
+            <span class="char-card">
+              <span class="char-face front">D</span>
+              <span class="char-face back">P</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">A</span>
+              <span class="char-face back">U</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">W</span>
+              <span class="char-face back">N</span>
+            </span>
+
+            <span class="char-card">
+              <span class="char-face front">N</span>
+              <span class="char-face back">E</span>
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================
+             EVENT DATE
+             ================================ -->
+
+        <div class="event-date-container">
+
+          <div class="event-date date-left">
+            22–23
+          </div>
+
+          <div class="event-date date-right">
+            AUGUST
+          </div>
+
+        </div>
+
+        <!-- ================================
+             SCROLL INDICATOR CAPSULE
+             ================================ -->
+
+        <div id="scrollCapsule" class="scroll-capsule">
+          <div class="capsule-inner">
+            <div class="capsule-state state-reveal">
+              <span>↓</span>
+              <span>SCROLL TO REVEAL</span>
+            </div>
+            <div class="capsule-state state-timeline">
+              <span>↓</span>
+              <span>SCROLL TO TIMELINE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-to-timeline-gap"></div>
+
+  <section id="timeline">
+  </section>
+
+
+  <script>
+
+  const mascot = document.getElementById("mascot");
+  const websiteBg = document.getElementById("websiteBg");
+  const heroSection = document.getElementById("hero");
+  const scrollCapsule = document.getElementById("scrollCapsule");
+  const capsuleReveal = document.querySelector(".state-reveal");
+  const capsuleTimeline = document.querySelector(".state-timeline");
+
+  const charCards = Array.from(
+    document.querySelectorAll(".char-card")
+  );
+
+  const dateElements = Array.from(
+    document.querySelectorAll(".event-date")
+  );
+
+  const totalChars = charCards.length;
+
+  /*
+    ============================================================
+    NATIVE SCROLL = HERO TIMELINE
+
+    There is intentionally NO wheel hijacking, no touch hijacking,
+    no preventDefault(), no window.scrollTo(), and no artificial
+    internal scroll position.
+
+    The browser's normal scroll position is the single source of
+    truth. The sticky hero stage stays in the viewport while the
+    user naturally scrolls through the 180vh hero section.
+
+    Therefore:
+
+      normal scroll → hero progress → 0% → 100%
+      hero ends      → sticky releases
+      next scroll    → 30vh gap → timeline
+
+    This is the cleanest and most reliable architecture.
+    ============================================================
+  */
+
+  const clamp = (value, min = 0, max = 1) =>
+    Math.min(max, Math.max(min, value));
+
+
+  const getHeroMetrics = () => {
+
+    const heroStart =
+      heroSection.offsetTop;
+
+    /*
+      The sticky stage remains visible for this exact amount
+      of document scroll.
+    */
+    const heroDistance =
+      Math.max(
+        1,
+        heroSection.offsetHeight -
+        window.innerHeight
+      );
+
+    const heroEnd =
+      heroStart + heroDistance;
+
+    return {
+      heroStart,
+      heroDistance,
+      heroEnd
+    };
+  };
+
+
+  const getHeroProgress = () => {
+
+    const {
+      heroStart,
+      heroDistance
+    } = getHeroMetrics();
+
+    return clamp(
+      (
+        window.scrollY -
+        heroStart
+      ) / heroDistance
+    );
+  };
+
+
+  const renderHero = (progress) => {
+
+    progress = clamp(progress);
+
+
+    /*
+      ==========================================================
+      SCROLL CAPSULE
+      ==========================================================
+    */
+
+    const capsuleProgress =
+      clamp(
+        (progress - 0.90) / 0.10
+      );
+
+    capsuleReveal.style.opacity =
+      1 - capsuleProgress;
+
+    capsuleTimeline.style.opacity =
+      capsuleProgress;
+
+
+    /*
+      ==========================================================
+      BACKGROUND
+      40% → 100% by 85% hero progress
+      ==========================================================
+    */
+
+    const bgProgress =
+      clamp(progress / 0.85);
+
+    const easedBgProgress =
+      bgProgress *
+      bgProgress *
+      (3 - 2 * bgProgress);
+
+    websiteBg.style.opacity =
+      0.40 +
+      easedBgProgress * 0.60;
+
+
+    /*
+      ==========================================================
+      MASCOT ROTATION
+      ==========================================================
+    */
+
+    const rotation =
+      100 + progress * 170;
+
+    mascot.cameraOrbit =
+      `${rotation}deg 75deg 105%`;
+
+
+    /*
+      ==========================================================
+      LIGHTING
+      ==========================================================
+    */
+
+    mascot.exposure =
+      progress * 0.70;
+
+
+    /*
+      ==========================================================
+      TITLE TRANSFORMATION
+      0% → 75%
+      ==========================================================
+    */
+
+    const textProgress =
+      clamp(progress / 0.75);
+
+    const windowSize =
+      0.45;
+
+    charCards.forEach((card, i) => {
+
+      const start =
+        (i / totalChars) *
+        (1 - windowSize);
+
+      const end =
+        start + windowSize;
+
+      const charProgress =
+        clamp(
+          (textProgress - start) /
+          (end - start)
+        );
+
+      card.style.transform =
+        `rotateY(${charProgress * 180}deg)`;
+    });
+
+
+    /*
+      ==========================================================
+      DATE
+      50% → 80%
+      ==========================================================
+    */
+
+    const dateProgress =
+      clamp(
+        (progress - 0.50) /
+        0.30
+      );
+
+    const dateY =
+      (1 - dateProgress) * 50;
+
+    dateElements.forEach(el => {
+
+      el.style.opacity =
+        dateProgress;
+
+      el.style.transform =
+        `translateY(${dateY}px)`;
+    });
+  };
+
+
+  /*
+    ============================================================
+    SCROLL RENDER LOOP
+
+    We use requestAnimationFrame only to render the current
+    native scroll position. We do NOT smooth/interpolate the
+    scroll itself, because the browser should remain in control.
+    ============================================================
+  */
+
+  let framePending = false;
+
+  const updateHeroFromScroll = () => {
+
+    framePending = false;
+
+    const {
+      heroEnd
+    } = getHeroMetrics();
+
+    const progress =
+      getHeroProgress();
+
+    renderHero(progress);
+
+
+    /*
+      The capsule belongs to the hero.
+
+      Once the browser naturally leaves the hero, fade the
+      capsule away while entering the existing transition gap.
+    */
+
+    if (window.scrollY > heroEnd) {
+
+      const distanceAfterHero =
+        window.scrollY - heroEnd;
+
+      const fadeDistance =
+        window.innerHeight * 0.30;
+
+      scrollCapsule.style.opacity =
+        Math.max(
+          0,
+          1 -
+          distanceAfterHero /
+          fadeDistance
+        );
+
+    } else {
+
+      scrollCapsule.style.opacity = 1;
+    }
+  };
+
+
+  const onScroll = () => {
+
+    if (!framePending) {
+
+      framePending = true;
+
+      requestAnimationFrame(
+        updateHeroFromScroll
+      );
+    }
+  };
+
+
+  /*
+    ============================================================
+    NORMAL BROWSER SCROLLING
+    ============================================================
+
+    IMPORTANT:
+    There is deliberately NO wheel listener.
+    There is deliberately NO touch listener.
+    There is deliberately NO preventDefault().
+    There is deliberately NO scrollTo().
+
+    The browser controls scrolling from start to finish.
+    ============================================================
+  */
+
+  window.addEventListener(
+    "scroll",
+    onScroll,
+    { passive: true }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    onScroll,
+    { passive: true }
+  );
+
+
+  /*
+    Initial render.
+  */
+
+  updateHeroFromScroll();
+
+</script>
+
+</body>
+</html>
