@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,8 @@
   <style>
     :root {
       --hero-to-timeline-gap: 30vh;
-      --timeline-height: 300vh;
+      --timeline-height: 400vh;
+      --timeline-viewport-height: 80vh;
     }
 
     html,
@@ -235,26 +235,76 @@
     }
 
     /* ================================
-       TIMELINE SECTION FOUNDATION
+       TIMELINE SECTION FOUNDATION (STICKY VIEWPORT)
        ================================ */
 
     #timeline {
       position: relative;
       width: 100%;
+      height: var(--timeline-height);
       min-height: var(--timeline-height);
       background: transparent;
       z-index: 2;
       box-sizing: border-box;
-      padding: 0 1.5rem 8rem 1.5rem;
+      padding: 0 2rem;
     }
 
-    .timeline-glass-panel {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      min-height: var(--timeline-height);
+    .timeline-layout {
+      position: -webkit-sticky;
+      position: sticky;
+      top: calc((100vh - var(--timeline-viewport-height)) / 2);
+      max-width: 1300px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+      height: var(--timeline-viewport-height);
+      box-sizing: border-box;
+      z-index: 2;
+    }
 
+    .timeline-heading-col {
+      flex-shrink: 0;
+      width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .timeline-vertical-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      margin: 0;
+      padding: 0;
+      font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+      font-size: clamp(2.75rem, 4.5vw, 4.25rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #FFFFE0;
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 12px rgba(0, 0, 0, 0.8),
+        0 10px 30px rgba(0, 0, 0, 0.95);
+      user-select: none;
+    }
+
+    .timeline-vertical-heading span {
+      display: block;
+      text-align: center;
+    }
+
+    .timeline-viewport {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      max-height: var(--timeline-viewport-height);
       background: rgba(2, 9, 35, 0.45);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -269,18 +319,42 @@
         0 0 30px rgba(236, 72, 153, 0.08);
 
       box-sizing: border-box;
-      padding: 4rem 3rem;
       overflow: hidden;
+      contain: paint;
+    }
+
+    .timeline-track {
+      position: relative;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      will-change: transform;
+      transform: translateY(0px);
     }
 
     @media (max-width: 768px) {
       #timeline {
-        padding: 0 0.75rem 4rem 0.75rem;
+        padding: 0 1rem;
       }
 
-      .timeline-glass-panel {
+      .timeline-layout {
+        top: calc((100vh - 85vh) / 2);
+        height: 85vh;
+        gap: 1.25rem;
+      }
+
+      .timeline-heading-col {
+        width: 32px;
+      }
+
+      .timeline-vertical-heading {
+        font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+        gap: 0.2rem;
+      }
+
+      .timeline-viewport {
         border-radius: 16px;
-        padding: 2.5rem 1.5rem;
       }
     }
 
@@ -678,7 +752,23 @@
   </section>
 
   <section id="timeline">
-    <div class="timeline-glass-panel"></div>
+    <div class="timeline-layout">
+      <aside class="timeline-heading-col">
+        <h2 class="timeline-vertical-heading" aria-label="TIMELINE">
+          <span>T</span>
+          <span>I</span>
+          <span>M</span>
+          <span>E</span>
+          <span>L</span>
+          <span>I</span>
+          <span>N</span>
+          <span>E</span>
+        </h2>
+      </aside>
+      <div class="timeline-viewport" id="timelineViewport">
+        <div class="timeline-track" id="timelineTrack"></div>
+      </div>
+    </div>
   </section>
 
 
@@ -687,6 +777,9 @@
   const mascot = document.getElementById("mascot");
   const websiteBg = document.getElementById("websiteBg");
   const heroSection = document.getElementById("hero");
+  const timelineSection = document.getElementById("timeline");
+  const timelineViewport = document.getElementById("timelineViewport");
+  const timelineTrack = document.getElementById("timelineTrack");
   const scrollCapsule = document.getElementById("scrollCapsule");
   const capsuleReveal = document.querySelector(".state-reveal");
   const capsuleTimeline = document.querySelector(".state-timeline");
@@ -897,6 +990,75 @@
 
 
   /*
+    ==========================================================
+    TIMELINE SCROLL METRICS & INTERNAL TRACK TRANSLATION
+    ==========================================================
+  */
+
+  const getTimelineMetrics = () => {
+
+    if (!timelineSection) {
+      return { timelineStart: 0, timelineDistance: 1, timelineEnd: 0 };
+    }
+
+    const timelineStart =
+      timelineSection.offsetTop;
+
+    const timelineDistance =
+      Math.max(
+        1,
+        timelineSection.offsetHeight -
+        window.innerHeight
+      );
+
+    const timelineEnd =
+      timelineStart + timelineDistance;
+
+    return {
+      timelineStart,
+      timelineDistance,
+      timelineEnd
+    };
+  };
+
+
+  const getTimelineProgress = () => {
+
+    const {
+      timelineStart,
+      timelineDistance
+    } = getTimelineMetrics();
+
+    return clamp(
+      (
+        window.scrollY -
+        timelineStart
+      ) / timelineDistance
+    );
+  };
+
+
+  const renderTimeline = (progress) => {
+
+    if (!timelineTrack || !timelineViewport) return;
+
+    progress = clamp(progress);
+
+    const viewportHeight =
+      timelineViewport.clientHeight;
+
+    const trackHeight =
+      timelineTrack.scrollHeight;
+
+    const maxTranslate =
+      Math.max(0, trackHeight - viewportHeight);
+
+    timelineTrack.style.transform =
+      `translateY(${-progress * maxTranslate}px)`;
+  };
+
+
+  /*
     ============================================================
     SCROLL RENDER LOOP
 
@@ -908,7 +1070,7 @@
 
   let framePending = false;
 
-  const updateHeroFromScroll = () => {
+  const updateFromScroll = () => {
 
     framePending = false;
 
@@ -916,10 +1078,15 @@
       heroEnd
     } = getHeroMetrics();
 
-    const progress =
+    const heroProgress =
       getHeroProgress();
 
-    renderHero(progress);
+    renderHero(heroProgress);
+
+    const timelineProgress =
+      getTimelineProgress();
+
+    renderTimeline(timelineProgress);
 
 
     /*
@@ -959,7 +1126,7 @@
       framePending = true;
 
       requestAnimationFrame(
-        updateHeroFromScroll
+        updateFromScroll
       );
     }
   };
@@ -998,7 +1165,7 @@
     Initial render.
   */
 
-  updateHeroFromScroll();
+  updateFromScroll();
 
 </script>
 
