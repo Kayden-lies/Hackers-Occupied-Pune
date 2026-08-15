@@ -234,6 +234,160 @@
       }
     }
 
+    /* =========================================================
+       ABOUT SECTION (EDITORIAL STORYTELLING)
+    ========================================================= */
+    .about-section {
+      position: relative;
+      width: 100%;
+      padding: 10vh 1.5rem 12vh 1.5rem;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .about-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: clamp(2.5rem, 5vw, 5.5rem);
+      align-items: start;
+    }
+
+    .about-sticky-header {
+      position: sticky;
+      top: 14vh;
+    }
+
+    .about-section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #f472b6;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-section-heading {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(3rem, 4.8vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      color: #FFFFE0;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+      max-width: 720px;
+    }
+
+    .about-story-text {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      line-height: 1.75;
+      color: rgba(255, 255, 224, 0.88);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .about-highlight-phrase {
+      font-size: clamp(1.22rem, 1.6vw, 1.48rem);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #f472b6;
+      margin-top: 1rem;
+      display: block;
+      letter-spacing: -0.01em;
+      text-shadow: 0 0 16px rgba(244, 114, 182, 0.35);
+    }
+
+    .about-partnership-card {
+      position: relative;
+      padding: 1.75rem 2rem;
+      border-radius: 14px;
+      background: rgba(10, 15, 30, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(244, 114, 182, 0.25);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(244, 114, 182, 0.04);
+    }
+
+    .about-creator-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .about-creator-card {
+      position: relative;
+      padding: 1.75rem 1.6rem;
+      border-radius: 12px;
+      background: rgba(10, 15, 30, 0.52);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 224, 0.12);
+      box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .about-creator-card:hover {
+      border-color: rgba(244, 114, 182, 0.45);
+      box-shadow: 0 18px 36px -8px rgba(236, 72, 153, 0.2);
+    }
+
+    .about-creator-title {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.08em;
+      color: #FFFFE0;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .about-creator-text {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 224, 0.82);
+      margin: 0;
+    }
+
+    .about-final-statement {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      letter-spacing: 0.12em;
+      color: #FFFFE0;
+      text-shadow: 0 0 20px rgba(244, 114, 182, 0.5), 0 4px 10px rgba(0, 0, 0, 0.8);
+      margin: 1.25rem 0 0 0;
+    }
+
+    @media (max-width: 900px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .about-sticky-header {
+        position: static;
+      }
+      .about-creator-duo {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+
     /* ================================
        TIMELINE SECTION FOUNDATION (STICKY VIEWPORT)
        ================================ */
@@ -1064,20 +1218,92 @@
     </div>
   </section>
 
+  <!-- =========================================================
+       ABOUT HACKERS OCCUPIED PUNE SECTION
+  ========================================================= -->
+  <section class="about-section" id="about">
+    <div class="about-layout">
+      
+      <!-- Left sticky editorial identifier -->
+      <div class="about-sticky-header">
+        <div class="about-section-tag">
+          <span class="inline-block w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_8px_#f472b6]"></span>
+          The Vision
+        </div>
+        <h2 class="about-section-heading">
+          ABOUT<br>
+          HACKERS<br>
+          OCCUPIED<br>
+          PUNE
+        </h2>
+      </div>
+
+      <!-- Right editorial narrative content -->
+      <div class="about-content">
+        
+        <!-- Block 01: The Story & Premise -->
+        <div>
+          <p class="about-story-text">
+            Every project has a story. The problem that started it, the ideas that shaped it, the failures that changed it, and the people who kept building. But too often, we only see the final product.
+          </p>
+          <span class="about-highlight-phrase">
+            Hackers Occupied Pune is here to change that.
+          </span>
+        </div>
+
+        <!-- Block 02: Pune Launchpad & Partnership Card -->
+        <div class="about-partnership-card">
+          <p class="about-story-text" style="color: rgba(255, 255, 224, 0.95);">
+            With Pune as the launchpad for Hackers Occupied, we aim to bring together the city's growing developer and creator community around one simple idea: builders should have a voice too. In partnership with <strong style="color: #ffffff; font-weight: 600;">Genesis</strong>, <strong style="color: #ffffff; font-weight: 600;">AIDN</strong> is bringing developers, creators, and problem solvers together for an experience that goes beyond the usual hackathon.
+          </p>
+        </div>
+
+        <!-- Block 03: The Hardcore Hackathon -->
+        <p class="about-story-text">
+          Yes, this is still a hardcore hackathon. You'll build crazy things, pull late nights, break things, fix them, and ship projects that matter. But there's another side to being a builder that deserves just as much attention.
+        </p>
+
+        <!-- Block 04: The Creator Transition -->
+        <p class="about-story-text">
+          Knowing how to build is only the beginning. Every project comes with a problem, a process, a set of decisions, failures, and breakthroughs that shape the final result. We want that journey to be part of the experience too.
+        </p>
+
+        <p class="about-story-text">
+          So at Hackers Occupied Pune, we're celebrating two sides of the creator inside every builder:
+        </p>
+
+        <!-- Creator Split: Two Connected Blocks -->
+        <div class="about-creator-duo">
+          <div class="about-creator-card">
+            <h4 class="about-creator-title" style="color: #f472b6;">THE VIDEO CREATORS</h4>
+            <p class="about-creator-text">
+              Those who can turn a 2 AM debugging session, a breakthrough, or a failed build into a Reel that people can relate to.
+            </p>
+          </div>
+          <div class="about-creator-card">
+            <h4 class="about-creator-title" style="color: #f472b6;">THE STORYTELLERS</h4>
+            <p class="about-creator-text">
+              Those who can put their journey into words, sharing what they're building, the technology behind it, why they chose their approach, and the impact they hope to create.
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 05: The Participant Platform -->
+        <p class="about-story-text">
+          At Hackers Occupied Pune, your project is more than a submission. It's an opportunity to show <span style="color: #f472b6; font-weight: 500;">how you think</span>, <span style="color: #f472b6; font-weight: 500;">what you create</span>, and <span style="color: #f472b6; font-weight: 500;">why it matters</span>. From the first idea to the final build, we want to give the people behind the projects a platform to be seen and heard.
+        </p>
+
+        <!-- Final Editorial Statement -->
+        <div class="about-final-statement">
+          BUILD. CREATE. BE HEARD.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="timeline">
     <div class="timeline-layout">
-      <aside class="timeline-heading-col">
-        <h2 class="timeline-vertical-heading" aria-label="TIMELINE">
-          <span>T</span>
-          <span>I</span>
-          <span>M</span>
-          <span>E</span>
-          <span>L</span>
-          <span>I</span>
-          <span>N</span>
-          <span>E</span>
-        </h2>
-      </aside>
       <div class="timeline-viewport" id="timelineViewport">
         <div class="timeline-track" id="timelineTrack">
           <div class="timeline-pipe"></div>
@@ -1165,6 +1391,18 @@
           </div>
         </div>
       </div>
+      <aside class="timeline-heading-col">
+        <h2 class="timeline-vertical-heading" aria-label="TIMELINE">
+          <span>T</span>
+          <span>I</span>
+          <span>M</span>
+          <span>E</span>
+          <span>L</span>
+          <span>I</span>
+          <span>N</span>
+          <span>E</span>
+        </h2>
+      </aside>
     </div>
   </section>
 
