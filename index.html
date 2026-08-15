@@ -1162,6 +1162,122 @@
       }
     }
 
+    /* ================================
+       SUPPORTED BY SECTION (3x2 GRID)
+       ================================ */
+    #supported-by {
+      position: relative;
+      width: 100%;
+      padding: 6vh 2rem 10vh 2rem;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .supported-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.25rem;
+    }
+
+    .supported-heading {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      letter-spacing: 0.18em;
+      color: #FFFFE0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(236, 72, 153, 0.2);
+    }
+
+    .supported-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .supported-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 14px 30px -10px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        inset 0 0 16px rgba(255, 255, 255, 0.03);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    .supported-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(244, 114, 182, 0.55);
+      box-shadow:
+        0 18px 36px -8px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(236, 72, 153, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+    }
+
+    .supported-logo-wrap {
+      width: 100%;
+      max-width: 200px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .supported-logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .supported-card:hover .supported-logo-img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 4px 14px rgba(236, 72, 153, 0.25));
+    }
+
+    @media (max-width: 900px) {
+      .supported-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .supported-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .supported-card {
+        padding: 1.4rem 1.1rem;
+      }
+      .supported-logo-wrap {
+        height: 70px;
+      }
+    }
+
     model-viewer {
       position: absolute;
       inset: 0;
@@ -1556,7 +1672,7 @@
         <!-- Block 02: Pune Launchpad & Partnership Card -->
         <div class="about-partnership-card">
           <p class="about-story-text" style="color: rgba(255, 255, 224, 0.95);">
-            With Pune as the launchpad for Hackers Occupied, we aim to bring together the city's growing developer and creator community around one simple idea: builders should have a voice too. In partnership with <strong style="color: #ffffff; font-weight: 600;">Genesis</strong>, <strong style="color: #ffffff; font-weight: 600;">AIDN</strong> is bringing developers, creators, and problem solvers together for an experience that goes beyond the usual hackathon.
+            With Pune as the launchpad for Hackers Occupied, we aim to bring together the city's growing developer and creator community around one simple idea: builders should have a voice too.<strong style="color: #ffffff; font-weight: 600;"> AIDN</strong> and <strong style="color: #ffffff; font-weight: 600;">Genesis</strong> are bringing developers, creators, and problem solvers together for an experience that goes beyond the usual hackathon.
           </p>
         </div>
 
@@ -1821,6 +1937,64 @@
 
         <!-- Shared Note beneath Final Round cards -->
         
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SUPPORTED BY SECTION (3x2 GRID)
+  ========================================================= -->
+  <section id="supported-by" class="relative z-10">
+    <div class="supported-container">
+      
+      <!-- Centered Section Heading -->
+      <h2 class="supported-heading">SUPPORTED BY</h2>
+
+      <!-- 3x2 Grid of Individual Frosted Glass Cards -->
+      <div class="supported-grid">
+        
+        <!-- CARD 01: ALGOrand -->
+        <div class="supported-card" id="supporter-algorand">
+          <div class="supported-logo-wrap">
+            <img src="/algorand.png" alt="ALGOrand Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- CARD 02: GitHub (Centered in Top Row) -->
+        <div class="supported-card" id="supporter-github">
+          <div class="supported-logo-wrap">
+            <img src="/github-logo-2.png" alt="GitHub Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- CARD 03: Logitech -->
+        <div class="supported-card" id="supporter-logitech">
+          <div class="supported-logo-wrap">
+            <img src="/logitech-2-1-logo-png-transparent.png" alt="Logitech Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- CARD 04: HackCulture -->
+        <div class="supported-card" id="supporter-hackculture">
+          <div class="supported-logo-wrap">
+            <img src="/HackCulture.png" alt="HackCulture Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- CARD 05: Cornitos -->
+        <div class="supported-card" id="supporter-cornitos">
+          <div class="supported-logo-wrap">
+            <img src="/cornitos.png" alt="Cornitos Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- CARD 06: Salesforce -->
+        <div class="supported-card" id="supporter-salesforce">
+          <div class="supported-logo-wrap">
+            <img src="/Salesforce.png" alt="Salesforce Logo" class="supported-logo-img" loading="lazy" />
+          </div>
+        </div>
 
       </div>
     </div>
