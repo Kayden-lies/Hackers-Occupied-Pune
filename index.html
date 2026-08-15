@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +17,8 @@
 
   <style>
     :root {
+      --about-to-timeline-gap: 14vh;
+      --timeline-to-track-gap: 16vh;
       --hero-to-timeline-gap: 4vh;
       --timeline-height: 280vh;
       --timeline-viewport-height: 80vh;
@@ -241,6 +244,7 @@
       position: relative;
       width: 100%;
       padding: 10vh 1.5rem 12vh 1.5rem;
+      margin-bottom: var(--about-to-timeline-gap, 14vh);
       box-sizing: border-box;
       z-index: 10;
     }
@@ -860,6 +864,304 @@
       z-index: 1;
     }
 
+    .timeline-to-track-gap {
+      height: var(--timeline-to-track-gap, 16vh);
+      width: 100%;
+      pointer-events: none;
+    }
+
+    /* ================================
+       TRACKS SECTION (COMPACT & CLEAN)
+       ================================ */
+    #tracks {
+      position: relative;
+      width: 100%;
+      padding: 6vh 2rem 10vh 2rem;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .tracks-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .tracks-heading-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 0.5rem;
+    }
+
+    .tracks-vertical-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #FFFFE0;
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 12px rgba(0, 0, 0, 0.8),
+        0 8px 24px rgba(236, 72, 153, 0.25);
+      user-select: none;
+    }
+
+    .tracks-vertical-heading span {
+      display: block;
+      text-align: center;
+    }
+
+    .tracks-content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      width: 100%;
+    }
+
+    /* Track Glass Cards */
+    .track-glass-card {
+      position: relative;
+      background: rgba(10, 15, 30, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 224, 0.12);
+      border-radius: 16px;
+      box-shadow:
+        0 14px 32px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        inset 0 0 20px rgba(236, 72, 153, 0.03);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .track-glass-card:hover {
+      border-color: rgba(244, 114, 182, 0.4);
+      box-shadow:
+        0 18px 40px -8px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(236, 72, 153, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .track-card-header {
+      padding: 1.5rem 1.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .track-card-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .track-phase-tag {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #f472b6;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .track-card-title {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 2.4vw, 2.3rem);
+      letter-spacing: 0.06em;
+      color: #FFFFE0;
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .track-card-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 224, 0.85);
+      margin: 0.4rem 0 0 0;
+    }
+
+    .track-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+
+    .track-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.75rem;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(244, 114, 182, 0.3);
+      color: #fbcfe8;
+    }
+
+    .track-tag-pill.status-pill {
+      background: rgba(244, 114, 182, 0.18);
+      border-color: rgba(244, 114, 182, 0.5);
+      color: #FFFFE0;
+    }
+
+    /* Expand indicator icon */
+    .track-expand-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f472b6;
+      font-size: 1.15rem;
+      font-weight: 700;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    .track-glass-card:hover .track-expand-btn {
+      background: rgba(236, 72, 153, 0.2);
+      border-color: rgba(244, 114, 182, 0.4);
+      color: #ffffff;
+    }
+
+    .track-glass-card.expanded .track-expand-btn {
+      transform: rotate(45deg);
+      background: rgba(236, 72, 153, 0.3);
+      border-color: rgba(244, 114, 182, 0.6);
+      color: #ffffff;
+    }
+
+    /* Collapsible extra content container */
+    .track-card-expanded-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
+      padding: 0 1.85rem;
+      box-sizing: border-box;
+      border-top: 1px solid transparent;
+    }
+
+    .track-glass-card.expanded .track-card-expanded-body {
+      max-height: 240px;
+      opacity: 1;
+      padding: 1.25rem 1.85rem 1.6rem 1.85rem;
+      border-top-color: rgba(255, 255, 224, 0.08);
+    }
+
+    .track-expanded-detail-text {
+      font-size: 0.9rem;
+      line-height: 1.62;
+      color: rgba(255, 255, 224, 0.78);
+      margin: 0;
+    }
+
+    /* Final Round Divider */
+    .tracks-final-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin: 0.25rem 0;
+    }
+
+    .tracks-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(244, 114, 182, 0.35) 50%, transparent 100%);
+    }
+
+    .tracks-final-badge {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: #FFFFE0;
+      text-transform: uppercase;
+      padding: 0.3rem 1.1rem;
+      border-radius: 9999px;
+      background: rgba(18, 24, 41, 0.85);
+      border: 1px solid rgba(244, 114, 182, 0.35);
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.15);
+      white-space: nowrap;
+    }
+
+    /* Final Round 2-Card Grid */
+    .tracks-final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .tracks-reveal-note {
+      text-align: center;
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 224, 0.65);
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .tracks-reveal-note span {
+      color: #f472b6;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .tracks-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .tracks-heading-col {
+        align-items: flex-start;
+        padding-top: 0;
+      }
+      .tracks-vertical-heading {
+        flex-direction: row;
+        gap: 0.4rem;
+      }
+      .tracks-final-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .track-card-header {
+        padding: 1.25rem 1.4rem;
+      }
+      .track-glass-card.expanded .track-card-expanded-body {
+        padding: 1rem 1.4rem 1.35rem 1.4rem;
+      }
+    }
+
     model-viewer {
       position: absolute;
       inset: 0;
@@ -1405,6 +1707,124 @@
       </aside>
     </div>
   </section>
+    <div class="timeline-to-track-gap"></div>
+  <!-- =========================================================
+       TRACKS SECTION (COMPACT & EXPANDABLE)
+  ========================================================= -->
+  <section id="tracks" class="relative z-10">
+    <div class="tracks-layout">
+      
+      <!-- Left upright vertical TRACKS identifier -->
+      <aside class="tracks-heading-col">
+        <h2 class="tracks-vertical-heading" aria-label="TRACKS">
+          <span>T</span>
+          <span>R</span>
+          <span>A</span>
+          <span>C</span>
+          <span>K</span>
+          <span>S</span>
+        </h2>
+      </aside>
+
+      <!-- Right tracks content area -->
+      <div class="tracks-content-area">
+        
+        <!-- PHASE 01: Wide Horizontal Open Innovation Glass Card -->
+        <div class="track-glass-card" onclick="toggleTrackCard(this)" tabindex="0" role="button" aria-expanded="false">
+          <div class="track-card-header">
+            <div class="track-card-main">
+              <div class="track-phase-tag">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_6px_#f472b6]"></span>
+                PHASE 01
+              </div>
+              <h3 class="track-card-title">OPEN INNOVATION</h3>
+              <p class="track-card-desc">
+                Choose a problem statement of your choice and propose an original, practical solution. Phase 1 focuses on your understanding of the problem, technical approach, feasibility, originality, and clarity of thought.
+              </p>
+              <div class="track-tags-row">
+                <span class="track-tag-pill">OPEN INNOVATION</span>
+                <span class="track-tag-pill">PROJECT DOCUMENTATION</span>
+              </div>
+            </div>
+            <div class="track-expand-btn" aria-hidden="true">+</div>
+          </div>
+          <div class="track-card-expanded-body">
+            <p class="track-expanded-detail-text">
+              Teams are invited to submit clear problem scoping, architecture breakdown, implementation strategy, and initial proof-of-concept outlines during the online shortlisting round.
+            </p>
+          </div>
+        </div>
+
+        <!-- Centered Final Round Divider -->
+        <div class="tracks-final-divider">
+          <div class="tracks-divider-line"></div>
+          <div class="tracks-final-badge">FINAL ROUND</div>
+          <div class="tracks-divider-line"></div>
+        </div>
+        <div class="tracks-reveal-note">
+          PROBLEM STATEMENTS TO BE REVEALED AT THE <span>INAUGURATION · 22 AUGUST</span>
+        </div>
+        <!-- FINAL ROUND: Agentic AI & Web3 Two Equal Cards -->
+        <div class="tracks-final-grid">
+          
+          <!-- AGENTIC AI CARD -->
+          <div class="track-glass-card" onclick="toggleTrackCard(this)" tabindex="0" role="button" aria-expanded="false">
+            <div class="track-card-header">
+              <div class="track-card-main">
+                <div class="track-phase-tag">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_6px_#f472b6]"></span>
+                  TRACK 01
+                </div>
+                <h3 class="track-card-title">AGENTIC AI</h3>
+                <p class="track-card-desc">
+                  Build intelligent systems that can reason, act, and work toward goals.
+                </p>
+                <div class="track-tags-row">
+                  <span class="track-tag-pill status-pill">PROBLEM STATEMENT · REVEALED AT INAUGURATION</span>
+                </div>
+              </div>
+              <div class="track-expand-btn" aria-hidden="true">+</div>
+            </div>
+            <div class="track-card-expanded-body">
+              <p class="track-expanded-detail-text">
+                Explore autonomous multi-agent workflows, tool execution, adaptive decision loops, and next-gen intelligence architectures when official challenge tracks unlock at the venue.
+              </p>
+            </div>
+          </div>
+
+          <!-- WEB3 CARD -->
+          <div class="track-glass-card" onclick="toggleTrackCard(this)" tabindex="0" role="button" aria-expanded="false">
+            <div class="track-card-header">
+              <div class="track-card-main">
+                <div class="track-phase-tag">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-pink-500 shadow-[0_0_6px_#f472b6]"></span>
+                  TRACK 02
+                </div>
+                <h3 class="track-card-title">WEB3</h3>
+                <p class="track-card-desc">
+                  Build solutions around decentralized technologies and the Web3 ecosystem.
+                </p>
+                <div class="track-tags-row">
+                  <span class="track-tag-pill status-pill">PROBLEM STATEMENT · REVEALED AT INAUGURATION</span>
+                </div>
+              </div>
+              <div class="track-expand-btn" aria-hidden="true">+</div>
+            </div>
+            <div class="track-card-expanded-body">
+              <p class="track-expanded-detail-text">
+                Build high-throughput smart contracts, decentralized identity, verifiable compute, or on-chain governance tooling unlocked live during the hackathon kick-off.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Shared Note beneath Final Round cards -->
+        
+
+      </div>
+    </div>
+  </section>
 
 
   <script>
@@ -1837,6 +2257,16 @@
       updateTimelinePipeHeight();
     }).observe(timelineTrack);
   }
+
+  /*
+    Tracks Card Expand/Collapse Interaction
+  */
+  window.toggleTrackCard = function(cardElement) {
+    if (!cardElement) return;
+    const isExpanded = cardElement.classList.contains("expanded");
+    cardElement.classList.toggle("expanded");
+    cardElement.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+  };
 
 </script>
 
