@@ -1278,6 +1278,581 @@
       }
     }
 
+    /* ================================
+       FINAL CTA & LOCATION COMBINED SECTION
+       ================================ */
+    #final-cta {
+      position: relative;
+      width: 100%;
+      padding: 8vh 2rem 10vh 2rem;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .cta-location-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: stretch;
+    }
+
+    /* Left Panel: Final CTA */
+    .cta-panel {
+      background: rgba(10, 15, 30, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 224, 0.14);
+      border-radius: 24px;
+      padding: clamp(2rem, 3.5vw, 2.75rem) clamp(1.75rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      gap: 1.75rem;
+      box-shadow:
+        0 16px 36px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        inset 0 0 20px rgba(236, 72, 153, 0.03);
+      box-sizing: border-box;
+    }
+
+    .cta-header-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .cta-heading {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: #FFFFE0;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 16px rgba(0, 0, 0, 0.85),
+        0 0 30px rgba(236, 72, 153, 0.35);
+    }
+
+    .cta-tagline {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #f472b6;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow: 0 0 12px rgba(244, 114, 182, 0.4);
+    }
+
+    .cta-stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.85rem, 2vw, 1.25rem);
+      width: 100%;
+      max-width: 480px;
+      box-sizing: border-box;
+    }
+
+    .cta-stat-card {
+      position: relative;
+      background: rgba(5, 8, 20, 0.45);
+      border: 1px solid rgba(255, 255, 224, 0.1);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px -6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    .cta-stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(244, 114, 182, 0.45);
+      box-shadow:
+        0 14px 28px -6px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(236, 72, 153, 0.15);
+    }
+
+    .cta-stat-number {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: #FFFFE0;
+      margin: 0;
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8),
+        0 0 22px rgba(244, 114, 182, 0.35);
+    }
+
+    .cta-stat-label {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: clamp(0.72rem, 0.95vw, 0.82rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #f472b6;
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+      opacity: 0.95;
+    }
+
+    .cta-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.65rem 1.65rem;
+      border-radius: 9999px;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(244, 114, 182, 0.45);
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: clamp(0.78rem, 1vw, 0.88rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #FFFFE0;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow:
+        0 0 20px rgba(236, 72, 153, 0.2),
+        0 4px 14px rgba(0, 0, 0, 0.4);
+      user-select: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    }
+
+    .cta-status-pill:hover {
+      color: #ffffff;
+      background: rgba(236, 72, 153, 0.24);
+      border-color: rgba(244, 114, 182, 0.7);
+      box-shadow:
+        0 0 25px rgba(236, 72, 153, 0.35),
+        0 6px 18px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .cta-status-pill:focus-visible {
+      outline: 2px solid rgba(244, 114, 182, 0.8);
+      outline-offset: 3px;
+    }
+
+    .cta-status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ec4899;
+      box-shadow: 0 0 8px #f472b6, 0 0 14px #ec4899;
+    }
+
+    /* Right Panel: Location */
+    .location-panel {
+      background: rgba(10, 15, 30, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 224, 0.14);
+      border-radius: 24px;
+      padding: clamp(2rem, 3.5vw, 2.75rem) clamp(1.75rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      box-shadow:
+        0 16px 36px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        inset 0 0 20px rgba(236, 72, 153, 0.03);
+      box-sizing: border-box;
+    }
+
+    .location-header-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      text-align: left;
+    }
+
+    .location-kicker {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: clamp(0.75rem, 1vw, 0.85rem);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #f472b6;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow: 0 0 12px rgba(244, 114, 182, 0.35);
+    }
+
+    .location-venue-name {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: #FFFFE0;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow:
+        0 2px 0 #000,
+        0 4px 14px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(236, 72, 153, 0.25);
+    }
+
+    .location-venue-full {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+      color: rgba(255, 255, 224, 0.78);
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .location-map-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      min-height: 220px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 224, 0.14);
+      background: rgba(5, 8, 20, 0.6);
+      box-shadow:
+        0 12px 28px -6px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(236, 72, 153, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    .location-map-wrap:hover {
+      border-color: rgba(244, 114, 182, 0.45);
+      box-shadow:
+        0 16px 36px -6px rgba(0, 0, 0, 0.7),
+        0 0 25px rgba(236, 72, 153, 0.18);
+    }
+
+    .location-map-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    @media (max-width: 900px) {
+      #final-cta {
+        padding: 6vh 1.25rem 8vh 1.25rem;
+      }
+      .cta-location-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 600px;
+      }
+      .cta-panel,
+      .location-panel {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+      }
+      .location-header-group {
+        text-align: center;
+        align-items: center;
+      }
+      .location-map-wrap {
+        aspect-ratio: 16 / 10;
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-stats-row {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+        max-width: 300px;
+      }
+      .cta-stat-card {
+        padding: 1.1rem 0.9rem;
+      }
+      .cta-status-pill {
+        padding: 0.55rem 1.35rem;
+      }
+    }
+
+    /* ================================
+       RULES SECTION (ACCORDION)
+       ================================ */
+    #rules {
+      position: relative;
+      width: 100%;
+      padding: 6vh 2rem 10vh 2rem;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .rules-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .rules-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .rules-heading {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      letter-spacing: 0.18em;
+      color: #FFFFE0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(236, 72, 153, 0.2);
+    }
+
+    .rules-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 224, 0.75);
+      margin: 0;
+    }
+
+    .rules-accordion-card {
+      width: 100%;
+      background: rgba(10, 15, 30, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 224, 0.12);
+      border-radius: 20px;
+      box-shadow:
+        0 16px 36px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 20px rgba(236, 72, 153, 0.02);
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .rule-item {
+      border-bottom: 1px solid rgba(255, 255, 224, 0.08);
+      transition: background-color 0.25s ease;
+    }
+
+    .rule-item:last-child {
+      border-bottom: none;
+    }
+
+    .rule-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .rule-header {
+      width: 100%;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      text-align: left;
+      user-select: none;
+      box-sizing: border-box;
+      transition: color 0.2s ease;
+    }
+
+    .rule-header:focus-visible {
+      outline: 2px solid rgba(244, 114, 182, 0.6);
+      outline-offset: -2px;
+    }
+
+    .rule-title-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex: 1;
+    }
+
+    .rule-num {
+      font-family: 'JetBrains Mono', 'Space Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f472b6;
+      letter-spacing: 0.1em;
+      min-width: 2rem;
+      opacity: 0.9;
+    }
+
+    .rule-title {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+      letter-spacing: 0.08em;
+      color: #FFFFE0;
+      margin: 0;
+      line-height: 1.1;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    .rule-item.expanded .rule-title {
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(244, 114, 182, 0.4);
+    }
+
+    .rule-toggle-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f472b6;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .rule-item:hover .rule-toggle-icon {
+      background: rgba(236, 72, 153, 0.18);
+      border-color: rgba(244, 114, 182, 0.4);
+      color: #ffffff;
+    }
+
+    .rule-item.expanded .rule-toggle-icon {
+      background: rgba(236, 72, 153, 0.3);
+      border-color: rgba(244, 114, 182, 0.6);
+      color: #ffffff;
+    }
+
+    .rule-body {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
+      padding: 0 1.75rem 0 calc(1.75rem + 3.25rem);
+      box-sizing: border-box;
+    }
+
+    .rule-item.expanded .rule-body {
+      max-height: 1000px;
+      opacity: 1;
+      padding: 0.25rem 1.75rem 1.5rem calc(1.75rem + 3.25rem);
+    }
+
+    .rule-body-inner {
+      border-left: 2px solid rgba(244, 114, 182, 0.35);
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .rule-text {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 224, 0.85);
+      margin: 0;
+    }
+
+    .rule-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      color: rgba(255, 255, 224, 0.85);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .rule-list li {
+      padding-left: 0.2rem;
+    }
+
+    .rule-closing-principle {
+      width: 100%;
+      background: rgba(10, 15, 30, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(244, 114, 182, 0.3);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      box-sizing: border-box;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow:
+        0 14px 30px -10px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12),
+        0 0 24px rgba(236, 72, 153, 0.08);
+    }
+
+    .closing-principle-tag {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      letter-spacing: 0.14em;
+      color: #f472b6;
+      margin: 0;
+      text-shadow: 0 0 16px rgba(244, 114, 182, 0.4);
+    }
+
+    .closing-principle-text {
+      font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+      line-height: 1.65;
+      color: rgba(255, 255, 224, 0.9);
+      max-width: 680px;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      #rules {
+        padding: 5vh 1rem 8vh 1rem;
+      }
+      .rule-header {
+        padding: 1.1rem 1.15rem;
+        gap: 0.75rem;
+      }
+      .rule-title-group {
+        gap: 0.75rem;
+      }
+      .rule-num {
+        min-width: 1.5rem;
+        font-size: 0.85rem;
+      }
+      .rule-body {
+        padding: 0 1.15rem 0 1.15rem;
+      }
+      .rule-item.expanded .rule-body {
+        padding: 0.2rem 1.15rem 1.25rem 1.15rem;
+      }
+      .rule-body-inner {
+        padding-left: 0.9rem;
+      }
+      .rule-closing-principle {
+        padding: 1.4rem 1.25rem;
+      }
+    }
+
     model-viewer {
       position: absolute;
       inset: 0;
@@ -1957,46 +2532,360 @@
         <!-- CARD 01: ALGOrand -->
         <div class="supported-card" id="supporter-algorand">
           <div class="supported-logo-wrap">
-            <img src="algorand.png" alt="ALGOrand Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/algorand.png" alt="ALGOrand Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
         <!-- CARD 02: GitHub (Centered in Top Row) -->
         <div class="supported-card" id="supporter-github">
           <div class="supported-logo-wrap">
-            <img src="github-logo-2.png" alt="GitHub Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/github-logo-2.png" alt="GitHub Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
         <!-- CARD 03: Logitech -->
         <div class="supported-card" id="supporter-logitech">
           <div class="supported-logo-wrap">
-            <img src="logitech-2-1-logo-png-transparent.png" alt="Logitech Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/logitech-2-1-logo-png-transparent.png" alt="Logitech Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
         <!-- CARD 04: HackCulture -->
         <div class="supported-card" id="supporter-hackculture">
           <div class="supported-logo-wrap">
-            <img src="HackCulture.png" alt="HackCulture Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/HackCulture.png" alt="HackCulture Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
         <!-- CARD 05: Cornitos -->
         <div class="supported-card" id="supporter-cornitos">
           <div class="supported-logo-wrap">
-            <img src="cornitos.png" alt="Cornitos Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/cornitos.png" alt="Cornitos Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
         <!-- CARD 06: Salesforce -->
         <div class="supported-card" id="supporter-salesforce">
           <div class="supported-logo-wrap">
-            <img src="Salesforce.png" alt="Salesforce Logo" class="supported-logo-img" loading="lazy" />
+            <img src="/Salesforce.png" alt="Salesforce Logo" class="supported-logo-img" loading="lazy" />
           </div>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FINAL CTA & LOCATION SECTION (COMBINED CLOSING LAYOUT)
+  ========================================================= -->
+  <section id="final-cta" class="relative z-10">
+    <div class="cta-location-grid">
+      
+      <!-- LEFT PANEL: FINAL CTA & STATS -->
+      <div class="cta-panel">
+        
+        <!-- Heading & Tagline -->
+        <div class="cta-header-group">
+          <h2 class="cta-heading">
+            SEE YOU AT<br>
+            HACKERS OCCUPIED
+          </h2>
+          <p class="cta-tagline">Build. Create. Be Heard.</p>
+        </div>
+
+        <!-- Prominent Stats Row -->
+        <div class="cta-stats-row">
+          
+          <!-- Stat 1: Impressions -->
+          <div class="cta-stat-card">
+            <span class="cta-stat-number" data-target="11996">11,996</span>
+            <span class="cta-stat-label">IMPRESSIONS</span>
+          </div>
+
+          <!-- Stat 2: Registrations -->
+          <div class="cta-stat-card">
+            <span class="cta-stat-number" data-target="1545">1,545</span>
+            <span class="cta-stat-label">REGISTRATIONS</span>
+          </div>
+
+        </div>
+
+        <!-- Registration Status Link Pill -->
+        <a
+          href="https://hackculture.io/hackathons/hackers-occupied-pune?ref=AIDN"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-status-pill"
+          id="cta-status-link"
+          aria-label="Registrations closed - View on HackCulture (opens in a new tab)"
+        >
+          <span class="cta-status-dot" aria-hidden="true"></span>
+          <span>REGISTRATIONS CLOSED</span>
+        </a>
+
+      </div>
+
+      <!-- RIGHT PANEL: LOCATION & VENUE MAP -->
+      <div class="location-panel">
+        
+        <!-- Location Info -->
+        <div class="location-header-group">
+          <span class="location-kicker">LOCATION</span>
+          <h3 class="location-venue-name">VIT PUNE</h3>
+          <p class="location-venue-full">Vishwakarma Institute of Technology (VIT)</p>
+        </div>
+
+        <!-- Interactive Google Map Embed Frame -->
+        <div class="location-map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.4421285165167!2d73.8682037!3d18.4636219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ea950f616219%3A0x321bdae2cea9f064!2sVishwakarma%20Institute%20of%20Technology%20(VIT)!5e0!3m2!1sen!2sin!4v1786866468978!5m2!1sen!2sin"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            class="location-map-iframe"
+            title="Vishwakarma Institute of Technology (VIT) Location Map"
+          ></iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       RULES SECTION (ACCORDION & CLOSING PRINCIPLE)
+  ========================================================= -->
+  <section id="rules" class="relative z-10">
+    <div class="rules-container">
+      
+      <!-- Heading & Supporting Subtitle -->
+      <div class="rules-header">
+        <h2 class="rules-heading">RULES</h2>
+        <p class="rules-subtitle">Know the rules. Build fair.</p>
+      </div>
+
+      <!-- Single Frosted Glass Accordion Container (Rules 01 - 10) -->
+      <div class="rules-accordion-card">
+        
+        <!-- RULE 01 -->
+        <div class="rule-item" id="rule-01">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">01</span>
+              <h3 class="rule-title">BUILD DURING THE HACKATHON</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                Official problem statements will be revealed exclusively at the venue during the opening ceremony. Teams must develop their solutions during the official hacking period.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 02 -->
+        <div class="rule-item" id="rule-02">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">02</span>
+              <h3 class="rule-title">ORIGINAL WORK ONLY</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                All submissions must be the original work of the participating team. Open-source libraries, APIs, and AI-powered development tools are permitted. Plagiarism, copied work, or fraudulent submissions will result in immediate disqualification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 03 -->
+        <div class="rule-item" id="rule-03">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">03</span>
+              <h3 class="rule-title">TEAM COMPOSITION</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">Each team must consist of 3–5 members.</p>
+              <p class="rule-text">Teams may comprise students, working professionals, or a combination of both.</p>
+              <p class="rule-text">Team composition cannot be changed once the hacking period begins without approval from the organizing committee.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 04 -->
+        <div class="rule-item" id="rule-04">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">04</span>
+              <h3 class="rule-title">SUBMIT BEFORE THE DEADLINE</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                All required deliverables, including project submissions and Creator Challenge entries (where applicable), must be submitted before the official submission deadline. Late submissions will not be accepted.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 05 -->
+        <div class="rule-item" id="rule-05">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">05</span>
+              <h3 class="rule-title">DEMO YOUR HACK</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                Every team must present a working prototype during the judging session. Teams should be prepared to explain their solution, technical implementation, and answer questions from the judging panel.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 06 -->
+        <div class="rule-item" id="rule-06">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">06</span>
+              <h3 class="rule-title">CREATOR CHALLENGE</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">Teams participating in the Creator Challenge must:</p>
+              <ul class="rule-list">
+                <li>Publish content within the official evaluation window.</li>
+                <li>Use the official event hashtag(s).</li>
+                <li>Tag the designated event and sponsor accounts.</li>
+                <li>Submit only genuine engagement data for evaluation.</li>
+              </ul>
+              <p class="rule-text">
+                Only eligible submissions will be considered for Creator Challenge scoring.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 07 -->
+        <div class="rule-item" id="rule-07">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">07</span>
+              <h3 class="rule-title">CODE OF CONDUCT</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                All participants must adhere to the Hackers Occupied Code of Conduct. Treat fellow participants, mentors, judges, volunteers, organizers, sponsors, and venue staff with professionalism, respect, and inclusivity at all times.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 08 -->
+        <div class="rule-item" id="rule-08">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">08</span>
+              <h3 class="rule-title">FAIR PLAY</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                Any attempt to interfere with another team's work, infrastructure, software, hardware, network, or event resources is strictly prohibited and will result in immediate disqualification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 09 -->
+        <div class="rule-item" id="rule-09">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">09</span>
+              <h3 class="rule-title">ACADEMIC &amp; COMPETITIVE INTEGRITY</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                Hackers Occupied follows a zero-tolerance policy towards cheating and fraudulent conduct.
+              </p>
+              <p class="rule-text">The following actions are strictly prohibited:</p>
+              <ul class="rule-list">
+                <li>Plagiarism or copying another team's work.</li>
+                <li>Submission of false or misleading information.</li>
+                <li>Manipulation or falsification of Creator Challenge metrics.</li>
+                <li>Use of bots, purchased engagement, fake accounts, or artificial traffic.</li>
+                <li>Any attempt to deceive judges or organizers.</li>
+                <li>Any other form of academic or competitive misconduct.</li>
+              </ul>
+              <p class="rule-text">Violation of any of the above may result in one or more of the following actions:</p>
+              <ul class="rule-list">
+                <li>Immediate disqualification of the entire team.</li>
+                <li>Permanent ban of all team members from participating in any current or future Genesis events.</li>
+                <li>Forfeiture of prizes, certificates, and any other event benefits.</li>
+                <li>A penalty of ₹5,000 per team, where applicable under the event's registration terms and conditions.</li>
+              </ul>
+              <p class="rule-text">
+                The decision of the organizing committee shall be final and binding.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULE 10 -->
+        <div class="rule-item" id="rule-10">
+          <button class="rule-header" type="button" onclick="toggleRuleItem(this)" aria-expanded="false">
+            <div class="rule-title-group">
+              <span class="rule-num">10</span>
+              <h3 class="rule-title">ORGANIZER RIGHTS</h3>
+            </div>
+            <div class="rule-toggle-icon" aria-hidden="true">+</div>
+          </button>
+          <div class="rule-body">
+            <div class="rule-body-inner">
+              <p class="rule-text">
+                The organizing committee reserves the right to interpret, amend, or enforce these rules whenever necessary to ensure the fair and successful conduct of the event. All decisions made by the organizers and judging panel shall be final.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VISUALLY SEPARATED CLOSING PRINCIPLE (11) -->
+      <div class="rule-closing-principle">
+        <h4 class="closing-principle-tag">11 · BUILD BOLD. HAVE FUN.</h4>
+        <p class="closing-principle-text">
+          Hackers Occupied is built to encourage innovation, collaboration, and experimentation. Learn, create, push boundaries, and make the most of the hackathon experience.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -2441,6 +3330,74 @@
     cardElement.classList.toggle("expanded");
     cardElement.setAttribute("aria-expanded", isExpanded ? "false" : "true");
   };
+
+  /*
+    Rules Accordion Expand/Collapse Interaction
+  */
+  window.toggleRuleItem = function(btnElement) {
+    if (!btnElement) return;
+    const ruleItem = btnElement.closest(".rule-item");
+    if (!ruleItem) return;
+    const isExpanded = ruleItem.classList.contains("expanded");
+    ruleItem.classList.toggle("expanded");
+    btnElement.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+    const icon = btnElement.querySelector(".rule-toggle-icon");
+    if (icon) {
+      icon.textContent = isExpanded ? "+" : "−";
+    }
+  };
+
+  /*
+    Final CTA Numbers Animation
+  */
+  const statNumbers = document.querySelectorAll(".cta-stat-number");
+  if (statNumbers.length && window.IntersectionObserver) {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animated = false;
+
+    const animateNumber = (el) => {
+      const target = parseInt(el.getAttribute("data-target"), 10);
+      if (isNaN(target) || prefersReducedMotion) {
+        el.textContent = target.toLocaleString("en-US");
+        return;
+      }
+
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const step = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        // easeOutQuad
+        const ease = 1 - (1 - progress) * (1 - progress);
+        const currentVal = Math.floor(ease * target);
+        el.textContent = currentVal.toLocaleString("en-US");
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target.toLocaleString("en-US");
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const ctaObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          statNumbers.forEach((el) => animateNumber(el));
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const ctaSection = document.getElementById("final-cta");
+    if (ctaSection) {
+      ctaObserver.observe(ctaSection);
+    }
+  }
 
 </script>
 
