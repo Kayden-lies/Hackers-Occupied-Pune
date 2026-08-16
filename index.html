@@ -1203,10 +1203,8 @@
 
     .supported-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: #ffffff;
+      border: 1px solid #ffffff;
       border-radius: 16px;
       padding: 1.75rem 1.5rem;
       display: flex;
@@ -1214,21 +1212,19 @@
       align-items: center;
       justify-content: center;
       box-shadow:
-        0 14px 30px -10px rgba(0, 0, 0, 0.4),
-        inset 0 1px 1px rgba(255, 255, 255, 0.25),
-        inset 0 0 16px rgba(255, 255, 255, 0.03);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+        0 14px 30px -10px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       box-sizing: border-box;
     }
 
     .supported-card:hover {
       transform: translateY(-4px);
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(244, 114, 182, 0.55);
+      background: #ffffff;
+      border-color: rgba(236, 72, 153, 0.7);
       box-shadow:
-        0 18px 36px -8px rgba(0, 0, 0, 0.5),
-        0 0 24px rgba(236, 72, 153, 0.2),
-        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+        0 18px 36px -8px rgba(0, 0, 0, 0.6),
+        0 0 24px rgba(236, 72, 153, 0.35);
     }
 
     .supported-logo-wrap {
@@ -1249,13 +1245,11 @@
       width: auto;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-      transition: transform 0.25s ease, filter 0.25s ease;
+      transition: transform 0.25s ease;
     }
 
     .supported-card:hover .supported-logo-img {
       transform: scale(1.06);
-      filter: drop-shadow(0 4px 14px rgba(236, 72, 153, 0.25));
     }
 
     @media (max-width: 900px) {
